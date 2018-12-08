@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: eureka-server
+  profiles:
+    active: dev
+security:
+  basic:
+    enabled: true
+  user:
+    name: user
+    password: password
+
+---
+spring:
+  profiles: dev
+server:
+  port: 8761
+eureka:
+  instance:
+      hostname: localhost
+      ip-address: ${spring.application.name}:${random.int}
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    healthcheck:
+      enabled: true
+---
+spring:
+  profiles: prod
+server:
+  port: ${random.int[10000,19999]}
+eureka:
+  instance:
+    hostname: localhost
+    ip-address: ${spring.application.name}:${random.int}
+    prefer-ip-address: true
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    healthcheck:
+      enabled: true
+
