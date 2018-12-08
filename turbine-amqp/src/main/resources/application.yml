@@ -1,9 +1,10 @@
 spring:
   application:
-    name: eureka-client
+    name: turbine-amqp
 server:
-  port: 1021
-
+  port: 1027
+management:
+  port: 1032
 eureka:
   instance:
     lease-expiration-duration-in-seconds: 30
@@ -12,8 +13,5 @@ eureka:
   client:
     service-url:
       defaultZone: http://user:password@eureka-dev:8761/eureka
-
-
-
 logging:
   file: ${spring.application.name}.log

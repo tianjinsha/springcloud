@@ -1,9 +1,12 @@
+server:
+  port: 1023
 spring:
   application:
-    name: eureka-client
-server:
-  port: 1021
-
+    name: ribbon-consumer
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 eureka:
   instance:
     lease-expiration-duration-in-seconds: 30
@@ -12,8 +15,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://user:password@eureka-dev:8761/eureka
-
-
-
 logging:
   file: ${spring.application.name}.log
+
