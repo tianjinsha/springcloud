@@ -1,0 +1,23 @@
+server:
+  port: 1030
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      profile: dev
+      label: master
+#      uri: http://localhost:4001
+      discovery:
+        enabled: true
+        service-id: config-server
+
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds:  10
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    service-url:
+      defaultZone: http://user:password@eureka-dev:8761/eureka

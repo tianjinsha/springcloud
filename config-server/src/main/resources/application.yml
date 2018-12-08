@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: prod
+server:
+  port: 4001
+
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds:  10
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://user:password@eureka-dev:8761/eureka
+
+---
+spring:
+  profiles: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: file:./config
+
+---
+spring:
+  profiles: prod
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/tianjinsha/springcloud-config/
