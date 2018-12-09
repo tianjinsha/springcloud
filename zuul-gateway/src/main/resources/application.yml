@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: zuul-gateway
+  profiles:
+    active: prod
+server:
+  port: 1032
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds:  10
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://user:password@eureka-dev:8761/eureka
+---
+spring:
+  profiles: dev
+zuul:
+  routes:
+    api-client:
+      path: /api-client/**
+      url:  http://localhost:1021/
+
+    api-consumer:
+      path: /api-consumer/**
+      serviceId: api-consumer
+api-consumer:
+  ribbon:
+    listOfServers: http://localhost:1022/
+
+---
+spring:
+  profiles: prod
+zuul:
+  routes:
+    api-client:
+      path: /api-client/**
+      serviceId: eureka-client
+    api-consumer:
+          path: /api-consumer/**
+          serviceId: eureka-consumer

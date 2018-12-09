@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: sleuth-trace-2
+  zipkin:
+      base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      percentage: 1
+server:
+  port: 1042
+
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds:  10
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://user:password@eureka-dev:8761/eureka
+#logging:
+#  level: debug
+
+

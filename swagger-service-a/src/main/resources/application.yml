@@ -1,8 +1,8 @@
 server:
-  port: 1022
+  port: 1034
 spring:
   application:
-    name: eureka-consumer
+    name: swagger-service-a
 eureka:
   instance:
     lease-expiration-duration-in-seconds: 30
@@ -11,3 +11,5 @@ eureka:
   client:
     service-url:
       defaultZone: http://user:password@eureka-dev:8761/eureka
+swagger:
+  base-package: com.chengshi.swaggerservicea.controller

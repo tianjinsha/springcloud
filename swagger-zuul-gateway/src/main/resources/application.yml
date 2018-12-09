@@ -1,8 +1,8 @@
 server:
-  port: 1022
+  port: 1036
 spring:
   application:
-    name: eureka-consumer
+    name: swagger-zuul-gateway
 eureka:
   instance:
     lease-expiration-duration-in-seconds: 30
@@ -11,3 +11,4 @@ eureka:
   client:
     service-url:
       defaultZone: http://user:password@eureka-dev:8761/eureka
+
